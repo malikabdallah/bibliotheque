@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <div th:if="${ajout}" th:text="${ajout}" style="color: green;"></div>
+            <h3>Qui suis je ?</h3>
+            <br/>
+
+            <img style="width: 200px; height: 200px;align-content: center" th:src="@{'/img/moi.JPG'}">
+            <p>
+
+                Je suis Malik Mahamoud informaticien en Master 2 MIAGE,
+                j ai developper ce site pour montrer mes competences en SPRING a
+                de futur recruteur .
+            </p>
+
+            <br/>
+
+            <p>
+
+                Pour developper ce site j ai utilise plusieur module de SPRING
+                a savoir spring boot , spring data pour l access au table dans la base de donnes ;
+                spring security pour la gestion des utilisateur et l acces au url .
+                J ai aussi utiliser le moteur de template thymeleaf pour les affichages . En utilisant des
+                templates trouver sur  <a href="http://css-free-templates.com">ce site</a>
+            </p>
+
+            <br/>
+
+
+            <p>
+
+                vous pouvez me joindre au 0683938046
+                <br/>
+                mon email :malik.abdallahchami@outlook.fr
+
+            </p>
+
+
+
+
+            <!-- End Products -->
+        </div>
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>

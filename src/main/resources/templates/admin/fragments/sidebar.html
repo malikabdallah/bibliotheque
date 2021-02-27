@@ -1,0 +1,75 @@
+<div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <div class="logo-image-small">
+            <img th:src="@{/img/logo-small.png}">
+        </div>
+    </a>
+    <a th:href="@{/admin/dash}" class="simple-text logo-normal">
+        Admin
+        <!-- <div class="logo-image-big">
+          <img src="../assets/img/logo-big.png">
+        </div> -->
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li class="active  mb-4 ">
+            <a th:href="@{/admin/dash}">
+                <i class="nc-icon nc-bank"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li class="mb-4">
+            <a   th:href="@{/admin/etudiant}">
+                <i class=" fas fa-user-graduate"></i>
+                <p>etudiants</p>
+            </a>
+        </li>
+        <li class="mb-4">
+            <a th:href="@{/admin/livres}">
+                <i   class="fas fa-book"></i>
+                <p>Livre</p>
+            </a>
+        </li>
+        <li class="mb-4">
+            <a th:href="@{/admin/autheur}">
+                <i class=" fas fa-user-plus"></i>
+                <p>Autheurs</p>
+            </a>
+        </li>
+        <li class="mb-4">
+            <a  th:href="@{/admin/emprunts}">
+                <i class="fas fa-user-clock"></i>
+                <p>Emprunts</p>
+            </a>
+        </li>
+        <li class="mb-4">
+            <a th:href="@{/admin/gestion}">
+                <i class="fas fa-user"></i>
+                <p>admin</p>
+            </a>
+        </li>
+        <li class="mb-4">
+
+            <a th:href="@{/admin/commentaire}" >
+                <i class="fas fa-comments"></i>
+                <p>commentaire</p>
+            </a>
+
+
+
+        </li>
+        <li class="mb-4">
+
+
+
+            <a th:href="@{/admin/type}" >
+                <i class="fas fa-folder"></i>
+                <p>type</p>
+            </a>
+
+        </li>
+
+
+    </ul>
+</div>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+        <br/><br/><br/><br/>
+
+        <div class="container">
+
+            <!-- Example row of columns -->
+            <h1 class="display-2" th:text="'Edit ' + ( ${typename} ?: ${type.nom} )"> editer un type</h1>
+            <a href="/admin/type" class="btn btn-primary">retourner au menu</a>
+
+
+            <hr>
+            <form th:action="@{/admin/type/editer}" method="post" th:object="${type}" enctype="multipart/form-data">
+
+
+
+                <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+
+                    Il y a des erreurs
+                </div>
+
+                <div class="form-group">
+                    <label for="">nom:</label>
+                    <input type="text" class="form-control" th:field="*{nom}" th:value="${type.nom}" placeholder="nom type">
+                    <span class="error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Image:</label>
+                    <input type="file" class="form-control" th:name="file" th:id="file">
+                    <img class="mt-2" src="#" alt="" id="imgPreview1">
+                    <br><br>
+                    <label for=""> image:</label>
+                    <img style="width: 200px;" th:src="@{'/adminmedia/' + ${type.image}}">
+                </div>
+
+                <input type="hidden" th:field="*{id}" th:value="${type.id}">
+
+
+                <button class="btn btn-danger mb-5">editer</button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>

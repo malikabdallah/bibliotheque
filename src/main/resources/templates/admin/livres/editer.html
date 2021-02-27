@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+        <br/><br/><br/><br/>
+
+        <div class="container">
+
+            <!-- Example row of columns -->
+            <h1 th:text="'Edit ' + ( ${livrename} ?: ${livre.titre} )"> editer un livre</h1>
+            <a href="/admin/livres" class="btn btn-primary">retourner au menu</a>
+
+
+            <hr>
+            <form th:action="@{/admin/livres/editer}" method="post" th:object="${livre}" enctype="multipart/form-data">
+
+
+
+                <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+
+                    Il y a des erreurs
+                </div>
+
+                <div class="form-group">
+                    <label for="">titre:</label>
+                    <input type="text" class="form-control" th:field="*{titre}" th:value="${livre.titre}" placeholder="titre livre">
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="">autheur:</label>
+                    <select th:field="*{autheursId}" class="form-control">
+                        <option th:value="0">Choisir un autheur</option>
+                        <option th:each="autheur: ${autheurs}" th:value="${autheur.id}" th:text="${autheur.nom}+' '+${autheur.prenom}"></option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="">type:</label>
+                    <select th:field="*{typeId}" class="form-control">
+                        <option th:value="0">Choisir un type</option>
+                        <option th:each="type: ${types}" th:value="${type.id}" th:text="${type.nom}"></option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="">annee:</label>
+                    <input type="text" class="form-control" th:field="*{annee}" th:value="${livre.annee}" placeholder="annee">
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="">Image:</label>
+                    <input type="file" class="form-control" th:name="file" th:id="file">
+                    <img class="mt-2" src="#" alt="" id="imgPreview1">
+                    <br><br>
+                    <label for="">                             <span> image actuelle :</span>
+                        </label>
+                    <img style="width: 200px;" th:src="@{'/livre/' + ${livre.image}}">
+                </div>
+
+                <input type="hidden" th:field="*{id}" th:value="${livre.id}">
+
+
+                <button class="btn btn-danger mb-5">editer</button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>

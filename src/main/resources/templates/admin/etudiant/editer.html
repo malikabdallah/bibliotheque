@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+        <br/><br/><br/><br/>
+
+        <div class="container">
+
+            <!-- Example row of columns -->
+            <h1 class="display-2" th:text="'Edit ' + ( ${etuname} ?: ${etudiant.nom} )"> modifier un etudiant</h1>
+            <a href="/admin/etudiant" class="btn btn-primary">retourner au menu</a>
+
+
+            <hr>
+            <form th:action="@{/admin/etudiant/editer}" method="post" th:object="${etudiant}" enctype="multipart/form-data">
+
+
+
+                <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+
+                    Il y a des erreurs
+                </div>
+
+                <div class="form-group">
+                    <label for="">nom:</label>
+                    <input type="text" class="form-control" th:field="*{nom}" th:value="${etudiant.nom}" placeholder="nom etudiant">
+                    <span class="error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="">prenom:</label>
+                    <input type="text" class="form-control" th:field="*{prenom}" th:value="${etudiant.prenom}" placeholder="prenom etudiant">
+                    <span class="error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username">pseudo</label>
+                    <input type="password"  th:field="*{username}"  th:value="${etudiant.username}"class="form-control" id="username" >
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <label for="pwd">mot de passe</label>
+                    <input type="password"  th:field="*{password}"  th:value="${etudiant.password}"class="form-control" id="pwd" >
+                </div>
+
+
+                <div class=" form-group">
+
+
+
+
+
+
+                    <label class="custom-file-label" for="customFile">photo de profil</label>
+                    <input type="file" class="form-control custom-file-input" th:name="file" th:id="file">
+                    <img class="mt-2" src="#" alt="" id="imgPreview1">
+                    <br><br>
+                    <label for="">ancienne photo:</label>
+                    <img style="width: 100px;height: 100px;" th:src="@{'/etudiant/' + ${etudiant.image}}">
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="classe">classe</label>
+
+                    <select th:field="*{classe}" th:value="${etudiant.classe}" id="classe" name="classe">
+                        <option value="seconde">seconde</option>
+                        <option value="premiere">premiere</option>
+                        <option value="terminale">terminale</option>
+                        <option value="licence1">Licence 1</option>
+                        <option value="licence2">Licence 2</option>
+                        <option value="licence3">Licence 3</option>
+                        <option value="master1">master 1</option>
+                        <option value="master2">master 2</option>
+
+                    </select>
+
+
+                </div>
+
+
+
+
+                <input type="hidden" th:field="*{id}" th:value="${etudiant.id}">
+
+
+                <button class="btn btn-danger mb-5">editer</button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>

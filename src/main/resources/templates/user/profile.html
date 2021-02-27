@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+
+
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <h3>Mon profile </h3>
+            <br/>
+
+
+            <div th:if="${messageE}" th:text="${messageE}" style="color: green;"></div>
+
+
+            <div  th:if="${message}">
+                vous etes un admin ! acceder a votre profile cote admin
+
+                <a th:href="${message}">admin </a>
+
+
+            </div>
+
+
+
+            <div  th:unless="${message}">
+
+                <img style="width: 200px; align-content: center; height: 200px;" th:src="@{'/etudiant/' + ${etudiant.image}}">
+
+
+                <br/>
+                <hr/>
+
+                <h3  th:text="'nom :'+${etudiant.nom}"></h3>
+                <h3  th:text="'prenom :'+${etudiant.prenom}"></h3>
+                <h3  th:text="'classe :'+${etudiant.classe}"></h3>
+
+
+
+
+                <br/>
+                <br/>
+                en rouge les retard ! suspensions du compte au bout de trois retard <br/>
+<br/>
+                <h3> historique des emprunts :</h3>
+                <br/>
+
+                <div th:if="${!emprunts.empty}">
+
+
+
+                    <a style="height: 1Opx;" th:if="${page > 0}" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page-1}__'" class="page-link"></a>
+                    <a   style="height: 15px;"  th:each="number: ${#numbers.sequence(0, pageCount-1)}" th:classappend="${page==number} ? 'active' : ''" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${number}__'" class="page-link" th:text="${number+1}"></a>
+                    <a  style="height: 1Opx;"  th:if="${page < pageCount-1}" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page+1}__'" class="page-link"></a>
+
+
+                </div>
+
+                <div th:if="${!emprunts.empty}" class="ml-2">
+                    <table class="table sorting" id="categories">
+                        <tr class="home">
+                            <th>livre</th>
+
+
+                            <th>date emprunt</th>
+
+                            <th> date retour limite</th>
+
+                            <th> date retour effective</th>
+                            <th> nb renouvellement</th>
+                            <th> renouveller </th>
+                            <th> retourner </th>
+
+
+
+
+                        </tr>
+                        <tr th:each="emprunt: ${emprunts}" th:id="'id_' + ${emprunt.id}">
+
+
+                            <td>
+                                <a  th:href="@{'/user/livres/historique/' + ${emprunt.livreid}}">
+                                    <span  th:text="${livres[__${emprunt.livreid}__]}"></span>
+
+                                </a>
+                            </td>
+
+
+
+
+
+
+
+                            <td th:text="${emprunt.dateemprunt}"></td>
+
+
+
+
+
+                            <td style="color: red;" th:text="${emprunt.dateretour}" th:if="${emprunt.retard == 1}"></td>
+
+
+                            <td style="color: green;" th:text="${emprunt.dateretour}" th:unless="${emprunt.retard == 1}"></td>
+
+
+
+
+
+
+                            <td>
+                            <span th:if="${emprunt.dateretoureffective != null}">
+                                <span  th:text="${emprunt.dateretoureffective}">
+
+                                </span>
+
+                            </span>
+                                <span th:if="${emprunt.dateretoureffective == null}">
+                                <span >
+                                    toujours pas rendu
+                                </span>
+
+                            </span>
+
+                            </td>
+
+
+
+
+
+                            <td th:text="${emprunt.renouvellement}"></td>
+
+
+
+
+
+
+
+
+                            <td th:if="${emprunt.dateretoureffective == null and emprunt.renouvellement<1}">
+
+                                <a th:href="@{'/user/renouvelle/' + ${emprunt.id}}">renouveller</a>
+                            </td>
+
+                            <td th:unless="${emprunt.dateretoureffective == null and emprunt.renouvellement<1}">
+
+                                non renouvellable
+                            </td>
+
+
+                            <td><a th:href="@{'/user/retourner/' + ${emprunt.id}}">retourner</a></td>
+
+
+
+
+                        </tr>
+                    </table>
+                </div>
+
+
+
+
+                <div th:unless="${!emprunts.empty}">
+                    <h4>vous n avez pas encore emprunter de livre </h4>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- End Products -->
+        </div>
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>

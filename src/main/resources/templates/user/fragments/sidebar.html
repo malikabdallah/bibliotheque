@@ -1,0 +1,20 @@
+<div id="sidebar">
+    <ul class="categories"  >
+        <h1>Categories livre</h1>
+
+        <ul th:each="type: ${listeType}" th:id="'id_' + ${type.id}">
+            <br/>
+            <li><a  th:text="${type.nom}" th:href="@{'/user/categories/' + ${type.id}}"></a></li>
+
+            <br/>
+            <hr/>
+        </ul>
+
+
+        <ul>
+
+        </ul>
+        </li>
+
+    </ul>
+</div>

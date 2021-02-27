@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+        <br/><br/><br/><br/>
+
+        <div class="container">
+
+            <a href="/admin/dash" class="btn btn-primary">retourner au menu</a>
+
+
+            <hr>
+
+
+
+
+
+
+
+
+            <div style="align-content: center" >
+
+
+
+                <img  class="img-responsive"  src="/adminmedia/admin.png">
+
+
+                <br/>
+                <hr/>
+
+                <h3  th:text="${admin.nom}+' '+${admin.prenom} "></h3>
+                <h4 th:text="'pseudo :'+ ${admin.username}"></h4>
+
+
+                    <h4 th:text="'password :'+ ${admin.password}"></h4>
+
+                    <br/>
+                <br/>
+                <br/>
+
+
+
+
+
+                    <p>
+
+
+                        Bon courage Admin !
+
+                    </p>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>

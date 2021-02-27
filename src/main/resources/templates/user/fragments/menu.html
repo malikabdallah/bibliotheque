@@ -1,0 +1,24 @@
+<div id="header" class="shell">
+    <div id="logo"><h1><a  th:href="@{/user}">Bibliotheque </a></h1><span><a href="#"></a></span></div>
+    <!-- Navigation -->
+    <div id="navigation">
+        <ul>
+            <li><a th:href="@{/user}" class="active">Accueil</a></li>
+            <li><a th:href="@{/user/autheurs}">Autheurs</a></li>
+            <li><a th:href="@{/user/profile}">Mon profil</a></li>
+            <li><a  th:href="@{/user/nous}">Nous</a></li>
+
+            <li>
+            <form th:if="${principal != null}" method="post" th:action="@{/logout}">
+                <span class="text-white" th:text="${'Bonjour, ' + principal}"></span>
+                <button >Deconnexion</button>
+            </form>
+            </li>
+        </ul>
+    </div>
+    <!-- End Navigation -->
+    <div class="cl">&nbsp;</div>
+    <!-- Login-details -->
+
+    <!-- End Login-details -->
+</div>

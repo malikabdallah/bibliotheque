@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+
+<body class="">
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+
+
+        <div class="content">
+            <br/>
+
+            <!-- Example row of columns -->
+            <h1> Admins</h1>
+            <a href="/admin/gestion/ajouter" class="btn btn-primary">ajouter un admin</a>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+
+            <hr>
+
+            <div th:if="${!listes.empty}">
+                <table class="table sorting" id="categories">
+                    <tr class="home">
+                        <th>Nom</th>
+                        <th>prenom</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    <tr th:each="admin: ${listes}" th:id="'id_' + ${admin.id}">
+                        <td th:text="${admin.nom}"></td>
+
+                        <td th:text="${admin.prenom}"></td>
+
+
+                        <td><a th:href="@{'/admin/gestion/editer/' + ${admin.id}}">Editer</a></td>
+                        <td><a th:href="@{'/admin/gestion/supprimer/' + ${admin.id}}" class="confirmDeletion">supprimer</a></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <nav class="mt-3" th:if="${count > perPage}">
+                <ul class="pagination">
+                    <li class="page-item" th:if="${page > 0}">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page-1}__'" class="page-link">precedent</a>
+                    </li>
+                    <li class="page-item" th:each="number: ${#numbers.sequence(0, pageCount-1)}" th:classappend="${page==number} ? 'active' : ''">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${number}__'" class="page-link" th:text="${number+1}"></a>
+                    </li>
+                    <li class="page-item" th:if="${page < pageCount-1}">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page+1}__'" class="page-link">suivant</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <div th:unless="${!listes.empty}">
+                <h4>il n y a aucun admin pour le moment</h4>
+            </div>
+
+
+        </div> <!-- /container -->
+
+
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>

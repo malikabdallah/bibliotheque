@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <div th:if="${ajout}" th:text="${ajout}" style="color: green;"></div>
+            <h3>Qui suis je ?</h3>
+            <br/>
+
+            <img style="width: 200px; height: 200px;align-content: center" th:src="@{'/livre/' + ${livre.image}}">
+            <br/>
+
+            <span>
+
+                ce livre a  ete emprunte
+            </span>
+            <span  th:text="${nb}+ ' fois'">
+
+
+            </span>
+
+
+            <br/>
+            <br/>
+
+
+            <a  th:if="${livre.disponible == 1}" th:href="@{'/user/emprunter/' + ${livre.id}}">emprunter </a>
+
+            <a  th:unless="${livre.disponible == 1}" href="#">non disponible </a>
+            <br/>
+            <br/>
+
+
+
+
+            voici la liste des commentaires de ceux qui l ont emprunter
+
+
+            <br/>
+
+
+            <br/>
+
+
+            <br/>
+
+
+            <div th:if="${!commentaires.empty}" class="ml-2">
+                <table class="table sorting" id="categories">
+                    <tr class="home">
+                        <th style="margin-right: 10px;">nom etudiant</th>
+
+
+                        <th  style="margin-right: 10px;">note </th>
+
+                        <th  style="margin-right: 10px;"> commentaire</th>
+
+
+
+
+                    </tr>
+                    <tr th:each="commentaire: ${commentaires}" th:id="'id_' + ${commentaire.id}">
+
+                        <td th:text="${etudiants[__${commentaire.idetudiant}__]}"></td>
+                        <td th:text="${commentaire.note}"></td>
+
+                        <td th:text="${commentaire.poste}"></td>
+
+
+
+
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+
+            <!-- End Products -->
+        </div>
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>

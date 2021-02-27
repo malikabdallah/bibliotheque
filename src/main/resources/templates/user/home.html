@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<div th:replace="/user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="/user/fragments/menu">
+
+</div>
+
+<!-- End Header -->
+<!-- Slider -->
+<div id="slider">
+    <div class="shell">
+        <ul>
+            <li>
+                <div class="image">
+                    <img src="css/images/books.png" alt="" />
+                </div>
+                <div class="details">
+                    <h2>Bestsellers</h2>
+                    <h3> but</h3>
+                    <p class="title">Quel est le but de ce site?</p>
+                    <p class="description"> j ai developpe ce site pour ameliorer mes competences en java spring</p>
+                </div>
+            </li>
+            <li>
+                <div class="image">
+                    <img src="css/images/books.png" alt="" />
+                </div>
+                <div class="details">
+                    <h2>Bestsellers</h2>
+                    <h3>peux t on reelement emprunter un livre</h3>
+                    <p class="title">est il possible d emprunter un vrai livre sur ce site ?</p>
+                    <p class="description"> non ce site est uniquement a but educatif</p>
+                </div>
+            </li>
+
+            </li>
+        </ul>
+        <div class="nav">
+            <a href="#">1</a>
+            <a href="#">2</a>
+
+        </div>
+    </div>
+</div>
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+    <div th:replace="/user/fragments/sidebar">
+
+    </div>
+
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <h3>Choisisez parmi notre colelction de livre</h3>
+
+            <div th:if="${!livres.empty}">
+                <div th:each="livre: ${livres}" th:id="'id_' + ${livre.id}">
+                    <div style="width: 25%; float: left; margin-bottom: 15px;"  >
+
+                        <img  class="img-responsive"  th:src="@{'/livre/' + ${livre.image}}">
+                        <div class="text-center" th:text="${livre.titre}"></div>
+                        <p class="text-center" th:text="${autheurs[__${livre.autheursId}__]}"><p/>
+
+                        <a th:href="@{'/user/livre/consulter/' + ${livre.id}}">consulter</a>
+                        <br/>
+
+
+                        <a  th:if="${livre.disponible == 1}" th:href="@{'/user/emprunter/' + ${livre.id}}">emprunter </a>
+
+                        <a  th:unless="${livre.disponible == 1}" href="#">non disponible </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- End Products -->
+        </div>
+        <div class="cl">&nbsp;</div>
+        <!-- Best-sellers -->
+
+
+
+
+
+
+
+        <!-- End Best-sellers -->
+    </div>
+
+
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>

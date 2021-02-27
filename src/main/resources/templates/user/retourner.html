@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <form style="margin: 0 auto;" method="post" th:object="${commentaire}" th:action="@{/user/retourner}">
+
+                <h1> attribuer une note au livre</h1>
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    il y a des erreurs
+                </div>
+
+                <div style="margin-top: 15px; " >
+                    <label for="">note:</label>
+                    <input  style="height: 10px;" type="number"  min="1" max="5" class="form-control" th:field="*{note}" placeholder="note">
+                </div>
+
+
+                <div style="margin-top: 15px; " >
+                    <label for="">commentaire:</label>
+                    <textarea style="height: 10px;" rows="3" cols="40" class="form-control" th:field="*{poste}" placeholder="commentaire">
+
+                    </textarea>
+                </div>
+
+
+
+                <input type="hidden" name="ide" th:value="${emprunt.id}"/>
+
+
+
+
+                <button class="btn btn-danger mb-5">Ajouter</button>
+
+            </form>
+
+
+            <!-- End Products -->
+        </div>
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>

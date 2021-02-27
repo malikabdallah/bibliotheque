@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<div th:replace="/admin/fragments/header">
+
+</div>
+
+<body>
+
+<div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+
+        <div th:replace="/admin/fragments/sidebar">
+
+
+        </div>
+
+    </div>
+
+
+    <div class="main-panel">
+
+
+        <div th:replace="/admin/fragments/navbar">
+
+
+        </div>
+
+
+
+        <br/><br/><br/><br/>
+
+        <div class="container">
+
+
+
+            <h1 >ajouter un autheur</h1>
+            <a href="/admin/autheur" class="btn btn-primary mb-5">retour aux autheur</a>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+            <form method="post" th:object="${autheur}" th:action="@{/admin/autheur/ajouter}" enctype="multipart/form-data">
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    il y a des erreurs
+                </div>
+
+                <div class="form-group">
+                    <label for="">Nom:</label>
+                    <input type="text" class="form-control" th:field="*{nom}" placeholder="nom">
+                    <span class="error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="">prenom:</label>
+                    <input type="text" class="form-control" th:field="*{prenom}" placeholder="prenom">
+                    <span class="error" th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"></span>
+                </div>
+
+
+
+                <button class="btn btn-danger mb-5">Ajouter</button>
+
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div th:replace="/admin/fragments/footer">
+
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+

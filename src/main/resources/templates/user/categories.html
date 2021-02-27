@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <div th:if="${emprunts}" th:text="${emprunts}" style="color: red;"></div>
+
+            <div th:if="${!livres.empty}">
+
+
+
+                <a style="height: 1Opx;" th:if="${page > 0}" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page-1}__'" class="page-link"></a>
+                <a   style="height: 15px;"  th:each="number: ${#numbers.sequence(0, pageCount-1)}" th:classappend="${page==number} ? 'active' : ''" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${number}__'" class="page-link" th:text="${number+1}"></a>
+                <a  style="height: 1Opx;"  th:if="${page < pageCount-1}" th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page+1}__'" class="page-link"></a>
+
+
+            </div>
+            <br/>
+            <h3>genre : <span th:text="${type.nom}"></span></h3>
+            <br/>
+
+
+            <br/>
+
+
+                    <div th:if="${!livres.empty}">
+
+                        <div th:each="livre: ${livres}" th:id="'id_' + ${livre.id}">
+
+
+                                 <div style="width: 25%; float: left; margin-bottom: 15px;"  >
+
+                                    <img  class="img-responsive"  th:src="@{'/livre/' + ${livre.image}}">
+                                    <div class="text-center" th:text="${livre.titre}"></div>
+                                    <p class="text-center" th:text="${autheurs[__${livre.autheursId}__]}"><p/>
+
+                                     <a th:href="@{'/user/livre/consulter/' + ${livre.id}}">consulter</a>
+                                     <br/>
+
+
+                                     <a  th:if="${livre.disponible == 1}" th:href="@{'/user/emprunter/' + ${livre.id}}">emprunter </a>
+
+                                    <a  th:unless="${livre.disponible == 1}" href="#">non disponible </a>
+
+                                 </div>
+                         </div>
+
+                 </div>
+
+        </div>
+
+
+            <div th:unless="${!livres.empty}">
+                <h4>il n y a aucun livre de cet categorie pour le moment</h4>
+            </div>
+
+
+            <!-- End Products -->
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>
+</html>

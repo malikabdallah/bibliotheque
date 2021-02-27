@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<div th:replace="user/fragments/header">
+
+</div>
+
+<body>
+<!-- Header -->
+
+<div th:replace="user/fragments/menu">
+
+</div>
+<!-- End Header -->
+<!-- Slider -->
+
+<!-- End Slider -->
+<!-- Main -->
+<div id="main" class="shell">
+    <!-- Sidebar -->
+
+    <div th:replace="user/fragments/sidebar">
+
+    </div>
+    <!-- End Sidebar -->
+    <!-- Content -->
+    <div id="content">
+        <!-- Products -->
+        <div class="products">
+            <h3>listes des autheurs</h3>
+            <br/>
+
+
+            <br/>
+
+
+            <div th:if="${!autheurs.empty}">
+                <table class="table sorting" id="categories">
+                    <tr class="home">
+                        <th>Nom</th>
+                        <th>prenom</th>
+                        <th>consulter oeuvre</th>
+                    </tr>
+                    <tr th:each="autheur: ${autheurs}" th:id="'id_' + ${autheur.id}">
+                        <td th:text="${autheur.nom}"></td>
+
+                        <td th:text="${autheur.prenom}"></td>
+
+
+                        <td><a th:href="@{'/user/autheur/consulter/' + ${autheur.id}}">consulter</a></td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <nav class="mt-3" th:if="${count > perPage}">
+                <ul class="pagination">
+                    <li class="page-item" th:if="${page > 0}">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page-1}__'" class="page-link">precedent</a>
+                    </li>
+                    <li class="page-item" th:each="number: ${#numbers.sequence(0, pageCount-1)}" th:classappend="${page==number} ? 'active' : ''">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${number}__'" class="page-link" th:text="${number+1}"></a>
+                    </li>
+                    <li class="page-item" th:if="${page < pageCount-1}">
+                        <a th:href="@{${#httpServletRequest.requestURI}} + '?page=__${page+1}__'" class="page-link">suivant</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <div th:unless="${!autheurs.empty}">
+                <h4>il n y a aucun autheur pour le moment</h4>
+            </div>
+
+
+            <!-- End Products -->
+        </div>
+
+    </div>
+    <!-- End Content -->
+    <div class="cl">&nbsp;</div>
+</div>
+<!-- End Main -->
+<!-- Footer -->
+
+<!-- End Footer -->
+</body>
+</html>
+</html>
